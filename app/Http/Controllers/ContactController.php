@@ -97,6 +97,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete(); //This deletes the contact
+        return redirect()->route('home'); //This redirects to home
     }
 }
