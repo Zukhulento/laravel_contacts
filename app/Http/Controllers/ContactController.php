@@ -15,7 +15,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return view('contacts.index',['contacts'=>Contact::all()]); //This returns the view to show all contacts 
     }
 
     /**
@@ -55,7 +55,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('contacts.show', compact('contact')); //This returns the view to show a contact
     }
 
     /**
