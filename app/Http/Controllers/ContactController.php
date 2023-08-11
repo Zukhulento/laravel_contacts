@@ -25,7 +25,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact');
+        return view('contacts.create'); //This returns the view to create a new contact (Use store)
     }
 
     /**
@@ -36,14 +36,15 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request -> validate([
-                
-                'name' => 'required',
-                'phone_number' =>'required|digits:8',
-                'email' => 'required|email',
-                'Age' => 'required|numeric|min:1|max:255',
-            ]);
-        return Response("Contact Created Successfully");
+        $data = $request->validate([ //This validates the data before storing it
+
+            'name' => 'required',
+            'phone_number' => 'required|min:8|max:12',
+            'email' => 'required|email',
+            'Age' => 'required|numeric|min:1|max:255',
+        ]);
+        Contact::create($data); //This creates the contact and stores it in the database
+        return redirect()->route('home'); //This redirects to home
     }
 
     /**
@@ -65,7 +66,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit', compact('contact')); //This returns the view to edit a contact (Use update)
     }
 
     /**
@@ -77,7 +78,15 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $data = $request->validate([ //This validates the data before storing it
+
+            'name' => 'required',
+            'phone_number' => 'required|min:8|max:12',
+            'email' => 'required|email',
+            'Age' => 'required|numeric|min:1|max:255',
+        ]);
+        $contact->update($data); //This updates the contact 
+        return redirect()->route('home'); //This redirects to home
     }
 
     /**
