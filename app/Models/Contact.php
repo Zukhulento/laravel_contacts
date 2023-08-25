@@ -12,6 +12,7 @@ class Contact extends Model
         'name',
         'phone_number',
         'email',
-        'Age'
+        'Age',
+        'user_id',
     ];
 }

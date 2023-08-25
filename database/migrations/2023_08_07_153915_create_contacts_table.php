@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('email');
             $table ->tinyinteger('Age',unsigned: true);
+            $table->foreignIdFor(User::class);//This creates the foreing id to link the user to the contact
             $table->timestamps();
         });
     }

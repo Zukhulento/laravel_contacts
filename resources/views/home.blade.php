@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<section>
     <div class="container pt-4 p-3">
         <div class="row">
             @forelse ($contacts as $contact)

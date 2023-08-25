@@ -15,7 +15,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('contacts.index',['contacts'=>Contact::all()]); //This returns the view to show all contacts 
+        $contacts = auth()->user()->contacts; //This gets the contacts of the user
+        return view('contacts.index',compact('contacts')); //This returns the view to show all contacts 
     }
 
     /**
@@ -43,6 +44,7 @@ class ContactController extends Controller
             'email' => 'required|email',
             'Age' => 'required|numeric|min:1|max:255',
         ]);
+        $data['user_id'] = auth()->user()->id; //This gets the id of the user
         Contact::create($data); //This creates the contact and stores it in the database
         return redirect()->route('home'); //This redirects to home
     }
